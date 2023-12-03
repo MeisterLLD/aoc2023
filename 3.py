@@ -5,7 +5,6 @@ with open('3','r') as f:
     for ligne in f.read().splitlines():
         mat.append(ligne)
 
-
 n, m = len(mat), len(mat[0])
 
 def detectword2(i,j):
@@ -25,20 +24,15 @@ for i in range(n):
             words.add( ((i,jdeb), (i, jfin)) )
 
 def voisins( i,j  ):
-    vois = []
     voisinspotentiels = [ (i,j-1), (i,j+1), (i-1,j-1), (i-1,j), (i-1,j+1), (i+1,j-1), (i+1,j), (i+1,j+1)   ]
-    for v in voisinspotentiels:
-        if v[0] >= 0 and v[0] < n and v[1] >= 0 and v[1] < m:
-            vois.append(v)
-    return vois
+    return[ v for v in voisinspotentiels if v[0] >= 0 and v[0] < n and v[1] >= 0 and v[1] < m]
 
 def acceptableword(  i, jdeb, jfin   ):
-    ans = False
     for j in range(jdeb,jfin):
         for iv,jv in voisins(i,j):
             if mat[iv][jv] not in cyphers and mat[iv][jv] != '.':
-                ans = True
-    return ans
+                return True
+    return False
 
 sum = 0
 for (i, jdeb), (i, jfin) in words:
