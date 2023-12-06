@@ -20,7 +20,7 @@ print('Part 1 : ', min([seedtoloc(seed) for seed in seeds]))
 
 ## Part 2
 # Idea from Epithumia :
-# find all intervals on which seed-to-loc is affine. For that, use dichotomy
+# find all intervals on which seed-to-loc is a translation. For that, use dichotomy
 # starting from a given seed range (a,b) until seedtoloc(a)-a = seedtoloc(b)-b
 # This works if (since ?) seedtoloc is one-to-one, so there cannot be two
 # distinct portions of the same line in its graph, separated by another part
