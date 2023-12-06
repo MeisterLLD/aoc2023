@@ -26,10 +26,6 @@ record = 377117112241505
 
 from math import sqrt, floor, ceil
 
-def f(x):
-    return (time-x)*x - record
-
-
 def numbers(time, record):
     Delta = time**2 - 4*record
     return  ceil( (time + sqrt(Delta))/2 - 1  ) - floor( (time - sqrt(Delta))/2  + 1 ) + 1
