@@ -2,7 +2,6 @@ with open('5','r') as f:
     lignes = f.read().split('\n')
 
 seeds = [int(x) for x in lignes[0].split(': ')[1].split(' ')]
-
 transformations = [ (3,23), (25,53), (55,87), (89,121), (123,166), (168,202), (204,219)    ]
 
 def seedtoloc(seed):
@@ -19,16 +18,7 @@ def seedtoloc(seed):
         old = new
     return new
 
-
-from math import inf
-minloc = inf
-
-for seed in seeds:
-    new = seedtoloc(seed)
-    if new < minloc:
-        minloc = new
-
-print('Part 1 : ', minloc)
+print('Part 1 : ', min([seedtoloc(seed) for seed in seeds]))
 
 ## Part 2
 # Idea from Epithumoa :
@@ -38,21 +28,18 @@ print('Part 1 : ', minloc)
 # distinct portions of the same line in its graph, separated by another part
 # (this would imply that some location has two or more corresponding seeds)
 
+
 queue = [ (seeds[2*i], seeds[2*i] + seeds[2*i+1] - 1) for i in range(len(seeds) // 2)   ]
-queue.sort()
 goodranges = [ ]
 
 while queue != []:
     a,b = queue.pop()
     old_b = b
-
-
     while seedtoloc(a) - a != seedtoloc(b) - b:
         b = (a+b)//2
 
     goodranges.append( (a,b) )
     if old_b > b:
         queue.append( (b+1, old_b) )
-
 
 print('Part 2 : ', min([seedtoloc(a) for a,_ in goodranges])  )
