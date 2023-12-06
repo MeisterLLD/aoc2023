@@ -7,14 +7,12 @@ transformations = [ (3,23), (25,53), (55,87), (89,121), (123,166), (168,202), (2
 def seedtoloc(seed):
     old = seed
     for m,n in transformations:  # On fait chacune des 7 transformations
-
         for ligne in lignes[m:n]:
             debnew, debold, length = [int(x) for x in ligne.split(' ')]
             if debold <= old <= debold + length - 1:
                 new = debnew + (old-debold)
                 break
             new = old
-
         old = new
     return new
 
@@ -37,14 +35,8 @@ while queue != []:
     old_b = b
     while seedtoloc(a) - a != seedtoloc(b) - b:
         b = (a+b)//2
-
     goodranges.append( (a,b) )
     if old_b > b:
         queue.append( (b+1, old_b) )
 
-<<<<<<< HEAD
 print('Part 2 : ', min([seedtoloc(a) for a,_ in goodranges])  )
-=======
-
-print('Part 2 : ', min([seedtoloc(a) for a,_ in goodranges])  )
->>>>>>> d3e306c08d31a1dd3543e0e121800e10c07890cf
