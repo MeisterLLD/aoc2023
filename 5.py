@@ -31,7 +31,7 @@ for seed in seeds:
 print('Part 1 : ', minloc)
 
 ## Part 2
-# Idea from Epithumoa :
+# Idea from Epithumia :
 # find all intervals on which seed-to-loc is affine. For that, use dichotomy
 # starting from a given seed range (a,b) until seedtoloc(a)-a = seedtoloc(b)-b
 # This works if (since ?) seedtoloc is one-to-one, so there cannot be two
