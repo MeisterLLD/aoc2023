@@ -20,6 +20,9 @@ for direction in cycle(instructions):
 print('Part 1', steps)
 
 ## Part 2
+# This LCM solution is actually a leap of faith : nothing in the
+# instructions guarantees that it works, e.g. if one of your ..Z node
+# leads directly to another ..Z node, it would be problematic.
 
 liststeps = [ ]
 positions = [key for key in dico.keys() if key[2] == 'A']
