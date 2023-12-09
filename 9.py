@@ -26,6 +26,7 @@ sumhistory = 0
 with open('9', 'r') as f:
     for ligne in f.read().splitlines():
         row = list(map(int, ligne.split(' ')))
+        row.reverse()
 
         matrix = [row]
 
@@ -34,11 +35,11 @@ with open('9', 'r') as f:
             row = row2
             matrix.append(row2)
 
-        matrix[-1].insert(0, 0)
+        matrix[-1].append(0)
 
         for i in range(len(matrix)-2, -1, -1):
-            matrix[i].insert( 0, matrix[i][0] - matrix[i+1][0]   )
+            matrix[i].append( matrix[i][-1] + matrix[i+1][-1]   )
 
-        sumhistory += matrix[0][0]
+        sumhistory += matrix[0][-1]
 
 print('Part 2 :',sumhistory)
