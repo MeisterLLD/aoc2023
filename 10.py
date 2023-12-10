@@ -1,8 +1,10 @@
 # This works only if your S in a 7. Modify lines 13-18 and 49 accordingly.
-map = [ ]
+
+map = [ ] # recreating the map
 with open('10', 'r') as f:
     for ligne in f.read().splitlines():
         map.append(ligne)
+
 n, m = len(map), len(map[0])
 
 def voisins(pos): # neighbour function
