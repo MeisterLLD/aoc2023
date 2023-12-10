@@ -38,16 +38,19 @@ while len(file) > 0:
 print('Part 1 :', max([d for v,d in dist.items()]))
 
 ## Part 2
-''' For each point not in the loop, count intersections to the left of it with the loop, except if they're - or J or L.
-Crossing the loop makes you alternate (*) between in/out the regions enclosed by the loop (but crossing a - or J or L,
-since you're going left, just makes you touching the boundary in a tangent way, so not alternating your status)
-(*) Courtesy of Camille Jordan. '''
+''' For each point not in the loop, count intersections to the left of it with the loop, except if they're - or J or L (*)
+Crossing the loop makes you alternate between in/out the regions enclosed by the loop.
+Omitting J and L is a neat trick, just think of it as offsetting everything a tiny bit : don't start from the center of
+your starting pixel but just a little bit below : then passing └ or ─ or ┘ is ok since you don't hit them !
+In that sense, what you are counting is the number of pixels whose points just a bit above their center, are enclosed in the loop.
+But since they're pixels, that is equivalent to them being fully in it !
+It also works with excluding -, 7, F instead of -, L, J, and imagining the tiny offset in the other direction '''
 
 inside = 0
 for i in range(n):
     for j in range(m):
         if (i,j) not in dist:
-            counter = len(  [(i,l) for l in range(j) if (i,l) in dist and map[i][l] not in {'-','J','L'} ]   ) # if your S is a -, J or L put it here too
+            counter = len(  [(i,l) for l in range(j) if (i,l) in dist and map[i][l] not in {'-', 'J', 'L'} ]   ) # if your S is a -, J or L put it here too
             inside += counter % 2
 
 
