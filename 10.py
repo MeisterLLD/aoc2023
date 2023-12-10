@@ -38,9 +38,9 @@ while len(file) > 0:
 print('Part 1 :', max([d for v,d in dist.items()]))
 
 ## Part 2
-''' For each point not in the loop, count intersections to the left of it with the loop, except if they're - or J or L (*)
+''' For each point not in the loop, count intersections to the left of it with the loop, except if they're - or J or L
 Crossing the loop makes you alternate between in/out the regions enclosed by the loop.
-Omitting J and L is a neat trick, just think of it as offsetting everything a tiny bit : don't start from the center of
+Omitting J and L is a visual trick, just think of it as offsetting everything a tiny bit : don't start from the center of
 your starting pixel but just a little bit below : then passing └ or ─ or ┘ is ok since you don't hit them !
 In that sense, what you are counting is the number of pixels whose points just a bit above their center, are enclosed in the loop.
 But since they're pixels, that is equivalent to them being fully in it !
