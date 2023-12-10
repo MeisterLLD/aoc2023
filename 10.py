@@ -42,7 +42,7 @@ print('Part 1 :', max([d for v,d in dist.items()]))
 Crossing the loop makes you alternate between in/out the regions enclosed by the loop.
 Omitting J and L is a visual trick, just think of it as offsetting everything a tiny bit : don't start from the center of
 your starting pixel but just a little bit below : then passing └ or ─ or ┘ is ok since you don't hit them !
-In that sense, what you are counting is the number of pixels whose points just a bit above their center, are enclosed in the loop.
+In that sense, what you are counting is the number of pixels whose point just a bit below their center, are enclosed in the loop.
 But since they're pixels, that is equivalent to them being fully in it !
 It also works with excluding -, 7, F instead of -, L, J, and imagining the tiny offset in the other direction '''
 
