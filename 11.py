@@ -3,7 +3,6 @@ with open('11', 'r') as f:
     for ligne in f.read().splitlines():
         map.append(ligne)
 
-
 n, m = len(map), len(map[0])
 
 emptyrows, emptycols = [], []
@@ -28,9 +27,9 @@ def dist( star1, star2 ):
     d = abs(i-k) + abs(j-l)
 
     for row in emptyrows:
-        if i < row < k or k < row < i: d += gap
+        if min(i,k) < row < max(i,k): d += gap
     for col in emptycols:
-        if j < col < l or l < col < j: d += gap
+        if min(j,l) < col < max(j,l): d += gap
 
     return d
 
