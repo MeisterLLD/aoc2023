@@ -6,7 +6,7 @@ def nbconf( record, groups ):
     # Cas de base
     if len(groups) == 0: # plus de # à placer
         return 1 if '#' not in record else 0
-    if sum(groups) > len(record): # plus assez de place pour les #
+    if sum(groups) + len(groups) - 1 > len(record): # plus assez de place pour les #
         return 0
 
     # Récursion
@@ -36,6 +36,10 @@ with open('12', 'r') as f:
 print('Part 1 :', somme)
 
 ## Part 2
+from time import time
+
+d = time()
+
 somme = 0
 with open('12', 'r') as f:
     for line in f.read().splitlines():
@@ -45,3 +49,4 @@ with open('12', 'r') as f:
         somme += nbconf( tuple(record) , tuple(groups) )
 
 print('Part 2 :', somme)
+print(time()-d)
