@@ -18,8 +18,8 @@ def nbconf( record, groups ):
         nb1 = nbconf( record[1:], groups) # possibilités en mettant un . à la place du ?
 
     # Possibilités avec le premier groupe de # au début
-    # On veut tout le début sans . et on veut qu'à l'indice taillebloc + 1 il y ait pas un #
-    # Alors on peut placer tout le 1er bloc au début
+    # On veut tout le début sans . et on veut qu'à l'indice taillebloc il n'y ait pas un #
+    # Alors on peut placer tout le 1er bloc au début (obligatoire si on commence on veut commencer par un #)
     if '.' not in record[:groups[0]] and (len(record) <= groups[0] or len(record) > groups[0] and record[groups[0]] != '#'):
             nb2 = nbconf( record[groups[0]+1:], groups[1:]   )
 
@@ -36,10 +36,6 @@ with open('12', 'r') as f:
 print('Part 1 :', somme)
 
 ## Part 2
-from time import time
-
-d = time()
-
 somme = 0
 with open('12', 'r') as f:
     for line in f.read().splitlines():
@@ -48,5 +44,4 @@ with open('12', 'r') as f:
         groups = 5*[int(x) for x in groups.split(',')]
         somme += nbconf( tuple(record) , tuple(groups) )
 
-print('Part 2 :', somme)
-print(time()-d)
+print('Part 2 :', somme) #300ms on a crappy i5 :)
