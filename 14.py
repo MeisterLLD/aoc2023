@@ -86,8 +86,4 @@ while not found: # Find a period
 
 period = i-k
 
-for _ in range((1000000000-k)%period):
-     for dir in [0,3,2,1]:
-         push(dir)
-
-print('Part 2 :', weight(rows))
+print('Part 2 :', weight(dejavu[k + (1000000000-k)%period]))
