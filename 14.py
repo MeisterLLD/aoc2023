@@ -86,10 +86,7 @@ while not found: # Find a period
 
 period = i-k
 
-with open('14','r') as f:
-    rows = f.read().splitlines()
-
-for _ in range(k + (1000000000-k)%period):
+for _ in range((1000000000-k)%period):
      for dir in [0,3,2,1]:
          push(dir)
 
