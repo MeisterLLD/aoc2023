@@ -5,7 +5,7 @@ n, m = len(carte), len(carte[0])
 
 incr = {'R': 1, 'L': -1, 'U':-1j, 'D':1j}
 
-energized = set()
+# energized = set()
 dejavu = set()
 
 def push(start, dir):
@@ -17,7 +17,7 @@ def push(start, dir):
     if (start, dir) in dejavu: # Case de base : on boucle
         return None
 
-    energized.add(start)
+    # energized.add(start)
     dejavu.add( (start, dir)  )
 
     # Appels récursifs
@@ -61,7 +61,7 @@ import sys
 sys.setrecursionlimit(10000)
 
 push( 0+0j, 'R')
-print('Part 1 :',len(energized))
+print('Part 1 :', len([carte for carte, dir in dejavu]))
 
 ## Part 2
 starts = [ (0,'R'), (0,'D'),  (m,'L'), (m,'D'), (0+(n-1)*1j,'U'), (0+(n-1)*1j, 'R'), ((m-1)+(n-1)*1j,'U'), ((m-1)+(n-1)*1j,'L') ]
@@ -75,10 +75,10 @@ for k in range(1,n-2):
 
 maxen = 0
 for pos, dir in starts:
-    energized = set()
     dejavu = set()
     push(pos, dir)
-    if len(energized) > maxen:
-        maxen = len(energized)
+    num = len( [carte for carte, dir in dejavu] )
+    if num > maxen:
+        maxen = num 
 
 print('Part 2 :', maxen)
