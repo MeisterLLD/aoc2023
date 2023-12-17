@@ -5,6 +5,7 @@ with open('17','r') as f:
 
 n, m = len(carte), len(carte[0])
 
+
 def isvalid(pos):
     return 0 <= pos[0] < n and 0 <= pos[1] < m
 
@@ -14,9 +15,6 @@ newdirs = {'R' : ('U','D'),  'L' : ('D','U'), 'U' : ('L','R'),  'D': ('R', 'L'),
 def tupladd(p,q):
     return (p[0]+q[0], p[1]+q[1])
 
-# def h(pos): # heuristique
-#     return abs(pos[0]-(n-1)) + abs(pos[1] - (m-1))
-
 def voisins( state ):
     pos, dir, count = state
     vois = []
@@ -25,20 +23,20 @@ def voisins( state ):
         newpos = tupladd(pos, dirs[dir])
         if isvalid(newpos) and count+1 <= 3:
             i, j = newpos
-            vois.append( (carte[i][j]  , (newpos, dir, count+1))  ) # straight
+            vois.append( (carte[i][j]   , (newpos, dir, count+1))  ) # straight
 
     for newdir in newdirs[dir]: # turns
         newpos = tupladd(pos, dirs[newdir])
         if isvalid(newpos):
             i, j = newpos
-            vois.append( (carte[i][j] , ( newpos, newdir, 1) )  )
+            vois.append( (carte[i][j]  , ( newpos, newdir, 1) )  )
 
     return vois
 
 
 # Dijkstra on a graph of states : (pos, dir, count)
 from math import inf
-def astar(debut):
+def dijkstra(debut):
     q = [ (0,  debut)   ]
     dists = {debut : 0}
 
@@ -57,7 +55,7 @@ def astar(debut):
 
 
 debut = (0,0), None, 0
-print('Part 1 :',astar(debut))
+print('Part 1 :', dijkstra(debut))
 
 ## Part 2
 def tupl4add(p,q):
@@ -88,4 +86,4 @@ def voisins( state ):
     return vois
 
 debut = (0,0), None, 0
-print('Part 2 :', astar(debut))
+print('Part 2 :', dijkstra(debut))
