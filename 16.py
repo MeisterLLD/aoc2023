@@ -61,7 +61,7 @@ import sys
 sys.setrecursionlimit(10000)
 
 push( 0+0j, 'R')
-print('Part 1 :', len(set([carte for carte, dir in dejavu])))
+print('Part 1 :', len(set([pos for pos, dir in dejavu])))
 
 ## Part 2
 starts = [ (0,'R'), (0,'D'),  (m,'L'), (m,'D'), (0+(n-1)*1j,'U'), (0+(n-1)*1j, 'R'), ((m-1)+(n-1)*1j,'U'), ((m-1)+(n-1)*1j,'L') ]
@@ -78,7 +78,7 @@ maxen = 0
 for pos, dir in starts:
     dejavu = set()
     push(pos, dir)
-    num = len( set([carte for carte, dir in dejavu] ))
+    num = len( set([pos for pos, dir in dejavu] ))
     if num > maxen:
         maxen = num
 
