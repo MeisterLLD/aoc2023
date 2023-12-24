@@ -62,5 +62,4 @@ def DFS2(start, end, init_dist, vus):
         if v not in vus:
             yield from DFS2(v, end, init_dist + d, vus | {v})
 
-
 print('Part 2 :',max(DFS2(deb,fin,0,{deb})))
