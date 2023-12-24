@@ -19,15 +19,12 @@ def voisins( pos ):
     if carte[i][j] == '.':
         return [(i,j) for (i,j) in voisinspot if i >= 0 and j >= 0 and i < n and j < m and carte[i][j] != '#']
 
-    return []
-
-
 def DFS(start, end, init_dist, vus):
     if start == end:
         yield init_dist
 
-    vus2 = vus | {start} if len(voisins(start)) > 2 else vus
     for v in voisins(start):
+        vus2 = vus.copy() if len(voisins(start)) > 2 else vus
         if v not in vus2:
             vus2.add(v)
             yield from DFS(v, end, init_dist + 1, vus2)
